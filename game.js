@@ -43,17 +43,18 @@ var ball = {
 	speed: 5,
 	radius: 15
 };//beautiful
-var player1 = {
+var players = {
 	width: 10,
 	height: 100,
-	x: 50 - 10,
-	y: 350
-};
-var player2 = {
-	width: 10,
-	height: 100,
-	x: 1150,
-	y: 350
+	speed: 5,
+	player1: {
+		x: 50 - 10,
+		y: 350
+	},
+	player2: {
+		x: 1150,
+		y: 350
+	},
 };
 function start() {
 	canvas = $("pongcanvas");
@@ -73,13 +74,13 @@ function update() {
 	}
 	fillCircle(ball.position.x, ball.position.y, ball.radius);
 	if (buttons.up) {
-		player1.y -= 1;
+		players.player1.y -= players.speed;
 	}
 	if (buttons.down) {
-		player1.y += 1;
+		players.player1.y += players.speed;
 	}
-	ctx.fillRect(player1.x, player1.y, player1.width, player1.height);
-	ctx.fillRect(player2.x, player2.y, player2.width, player2.height);
+	ctx.fillRect(players.player1.x, players.player1.y, players.width, players.height);
+	ctx.fillRect(players.player2.x, players.player2.y, players.width, players.height);
 }
 
 window.onload = start;
