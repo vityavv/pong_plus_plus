@@ -20,7 +20,18 @@ var ball = {
 	speed: 5,
 	radius: 15
 };//beautiful
-
+var player1 = {
+	width: 10,
+	height: 100,
+	x: 50 - 10,
+	y: 350
+};
+var player2 = {
+	width: 10,
+	height: 100,
+	x: 1150,
+	y: 350
+};
 function start() {
 	canvas = $("pongcanvas");
 	ctx = canvas.getContext("2d");
@@ -38,6 +49,8 @@ function update() {
 	}
 	ctx.fillStyle = "white";
 	fillCircle(ball.position.x, ball.position.y, ball.radius);
+	ctx.fillRect(player1.x, player1.y, player1.width, player1.height);
+	ctx.fillRect(player2.x, player2.y, player2.width, player2.height);
 }
 
 window.onload = start;
