@@ -58,7 +58,7 @@ var ball = {
 		x: 600,
 		y: 400
 	},
-	speed: 5,
+	speed: 3,
 	radius: 15
 };//beautiful
 var players = {
@@ -66,11 +66,11 @@ var players = {
 	height: 100,
 	speed: 5,
 	player1: {
-		x: 50 - 10,
+		x: 100 - 10,
 		y: 350
 	},
 	player2: {
-		x: 1150,
+		x: 1100,
 		y: 350
 	},
 };
