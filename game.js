@@ -59,19 +59,19 @@ var ball = {
 		y: 400
 	},
 	speed: 3,
-	radius: 15
+	radius: 20
 };//beautiful
 var players = {
-	width: 10,
-	height: 100,
+	width: 30,
+	height: 150,
 	speed: 5,
 	player1: {
-		x: 100 - 10,
-		y: 350
+		x: 100 - 30,
+		y: 400 - 150/2 //150 height
 	},
 	player2: {
 		x: 1100,
-		y: 350
+		y: 400 - 150/2
 	},
 };
 function start() {
