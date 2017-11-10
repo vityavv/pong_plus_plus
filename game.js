@@ -51,8 +51,8 @@ window.addEventListener("keyup", function(e){
 var canvas, ctx;//These are the variables that depend on DOM, so we initialize them after load.
 var ball = {
 	velocity: {
-		x: parseFloat((Math.random()*3 - 1.5).toFixed(2)), //Why does .toFixed() return a string? WHYYY?
-		y: parseFloat((Math.random()*3 - 1.5).toFixed(2))
+		x: parseFloat((Math.random()*2 - 1).toFixed(2)), //Why does .toFixed() return a string? WHYYY?
+		y: parseFloat((Math.random()*2 - 1).toFixed(2))
 	},
 	position: {
 		x: 600,
@@ -85,12 +85,13 @@ function update() {
 	ctx.fillStyle = "black";
 	ctx.fillRect(0, 0, 1200, 800);
 	ctx.fillStyle = "white";
+	//move the ball
 	ball.position.x += ball.velocity.x*ball.speed;
 	ball.position.y += ball.velocity.y*ball.speed;
 	if (ball.position.y + ball.radius >= 800 || ball.position.y - ball.radius <= 0) {
 		ball.velocity.y = -ball.velocity.y;
-	}
-	fillCircle(ball.position.x, ball.position.y, ball.radius);
+	}// make it bounce
+	//move the players
 	if (buttons.up) {
 		players.player2.y -= players.speed;
 	}
@@ -103,8 +104,17 @@ function update() {
 	if (buttons.z) {
 		players.player1.y += players.speed;
 	}
+	//Collision Detection!
+	if (ball.position.x - ball.radius >= 100 && ball.position.x - ball.radius <= 102 && ball.position.y >= players.player1.y && ball.position.y <= players.player1.y + players.height) {
+		ball.velocity.x = -ball.velocity.x;
+	}
+	if (ball.position.x + ball.radius >= 1098 && ball.position.x + ball.radius <= 1100 && ball.position.y >= players.player2.y && ball.position.y <= players.player2.y + players.height) {
+		ball.velocity.x = -ball.velocity.x;
+	}
+	//Draw everything
 	ctx.fillRect(players.player1.x, players.player1.y, players.width, players.height);
 	ctx.fillRect(players.player2.x, players.player2.y, players.width, players.height);
+	fillCircle(ball.position.x, ball.position.y, ball.radius);
 }
 
 window.onload = start;
