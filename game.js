@@ -2,9 +2,13 @@ function $(element) {
 	return document.getElementById(element);
 } //Looks a lot like jQuery, but _it's not_
 
+var canvas, ctx;//These are the variables that depend on DOM, so we initialize them after load.
+
 function start() {
-	$("jstest").innerHTML = "Your mom is testing the javascript";
-	alert("hi");
+	canvas = $("pongcanvas");
+	ctx = canvas.getContext("2d");
+
+	ctx.fillRect(0, 0, 1000, 500);
 }
 
 
