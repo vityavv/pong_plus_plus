@@ -1,24 +1,24 @@
 function $(element) {
 	return document.getElementById(element);
 } //Looks a lot like jQuery, but _it's not_
-function fillCircle(x, y, w) {
+function fillCircle(x, y, r) {
 	ctx.beginPath();
-	ctx.arc(x, y, w/2, 0, 2*Math.PI);
+	ctx.arc(x, y, r, 0, 2*Math.PI);
 	ctx.fill();
 }
 
 var canvas, ctx;//These are the variables that depend on DOM, so we initialize them after load.
 var ball = {
 	velocity: {
-		x: parseFloat((Math.random() + 0.5).toFixed(2)), //Why does .toFixed() return a string? WHYYY?
-		y: parseFloat((Math.random() + 0.5).toFixed(2))
+		x: parseFloat((Math.random()*3 - 1.5).toFixed(2)), //Why does .toFixed() return a string? WHYYY?
+		y: parseFloat((Math.random()*3 - 1.5).toFixed(2))
 	},
 	position: {
 		x: 600,
 		y: 400
 	},
 	speed: 5,
-	size: 20
+	radius: 15
 };//beautiful
 
 function start() {
@@ -33,8 +33,11 @@ function update() {
 	ctx.fillRect(0, 0, 1200, 800);
 	ball.position.x += ball.velocity.x*ball.speed;
 	ball.position.y += ball.velocity.y*ball.speed;
+	if (ball.position.y + ball.radius >= 800 || ball.position.y - ball.radius <= 0) {
+		ball.velocity.y = -ball.velocity.y;
+	}
 	ctx.fillStyle = "white";
-	fillCircle(ball.position.x, ball.position.y, ball.size);
+	fillCircle(ball.position.x, ball.position.y, ball.radius);
 }
 
 window.onload = start;
