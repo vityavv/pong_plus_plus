@@ -8,7 +8,7 @@ function start() {
 	canvas = $("pongcanvas");
 	ctx = canvas.getContext("2d");
 
-	ctx.fillRect(0, 0, 1000, 500);
+	ctx.fillRect(0, 0, 1200, 800);
 }
 
 
