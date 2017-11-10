@@ -8,7 +8,9 @@ function fillCircle(x, y, r) {// Makes code prettier by doing circle in one line
 }
 var buttons = {//buffer to check if it is down
 	up: false,
-	down: false
+	down: false,
+	a: false,
+	z: false
 }
 window.addEventListener("keydown", function(e){
 	switch (e.keyCode) {
@@ -19,6 +21,14 @@ window.addEventListener("keydown", function(e){
 			buttons.down = true;
 			break;
 	}
+	switch (e.keyCode) {
+		case 90:
+			buttons.z = true;
+			break;
+		case 65:
+			buttons.a = true;
+			break;
+	}
 });
 window.addEventListener("keyup", function(e){
 	switch (e.keyCode) {
@@ -27,6 +37,14 @@ window.addEventListener("keyup", function(e){
 			break;
 		case 40:
 			buttons.down = false;
+			break;
+	}
+	switch (e.keyCode) {
+		case 90:
+			buttons.z = false;
+			break;
+		case 65:
+			buttons.a = false;
 			break;
 	}
 });
@@ -74,9 +92,15 @@ function update() {
 	}
 	fillCircle(ball.position.x, ball.position.y, ball.radius);
 	if (buttons.up) {
-		players.player1.y -= players.speed;
+		players.player2.y -= players.speed;
 	}
 	if (buttons.down) {
+		players.player2.y += players.speed;
+	}
+	if (buttons.a) {
+		players.player1.y -= players.speed;
+	}
+	if (buttons.z) {
 		players.player1.y += players.speed;
 	}
 	ctx.fillRect(players.player1.x, players.player1.y, players.width, players.height);
