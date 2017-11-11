@@ -49,18 +49,21 @@ window.addEventListener("keyup", function(e){
 	}
 });
 var canvas, ctx;//These are the variables that depend on DOM, so we initialize them after load.
-var ball = {
-	velocity: {
+function Ball() {
+	this.velocity = {
 		x: parseFloat((Math.random()*2 - 1).toFixed(2)), //Why does .toFixed() return a string? WHYYY?
 		y: parseFloat((Math.random()*2 - 1).toFixed(2))
-	},
-	position: {
+	};
+	if (this.velocity.x > 0) {this.velocity.x++;} else {this.velocity.x--;}
+	if (this.velocity.y > 0) {this.velocity.y++;} else {this.velocity.y--;}
+	this.position = {
 		x: 600,
 		y: 400
-	},
-	speed: 3,
-	radius: 20
-};//beautiful
+	};
+	this.speed = 3;
+	this.radius = 20;
+}
+var ball = new Ball();
 var players = {
 	width: 30,
 	height: 150,
@@ -78,8 +81,6 @@ function start() {
 	canvas = $("pongcanvas");
 	ctx = canvas.getContext("2d");
 
-	if (ball.velocity.x > 0) {ball.velocity.x++;} else {ball.velocity.x--;}
-	if (ball.velocity.y > 0) {ball.velocity.y++;} else {ball.velocity.y--;}
 	ctx.fillRect(0, 0, 1200, 800);
 	setInterval(update, 20);
 }
