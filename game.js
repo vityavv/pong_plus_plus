@@ -57,45 +57,46 @@ function Ball() {
 	if (this.velocity.x > 0) {this.velocity.x++;} else {this.velocity.x--;}
 	if (this.velocity.y > 0) {this.velocity.y++;} else {this.velocity.y--;}
 	this.position = {
-		x: 600,
-		y: 400
+		x: canvas.width/2,
+		y: canvas.height/2
 	};
 	this.speed = 3;
 	this.radius = 20;
 }
-var ball = new Ball();
+var ball;
 var players = {
 	width: 30,
 	height: 150,
 	speed: 5,
 	player1: {
 		x: 100 - 30,
-		y: 400 - 150/2, //150 height
+		y: 800/2 - 150/2, //150 height
 		score: 0
 	},
 	player2: {
-		x: 1100,
-		y: 400 - 150/2,
+		x: 1200-100,
+		y: 800/2 - 150/2,
 		score: 0
 	},
 };
 function start() {
 	canvas = $("pongcanvas");
 	ctx = canvas.getContext("2d");
+	ball = new Ball();
 	ctx.textBaseline = "top";
 	ctx.font = "100px ArcadeClassic";
 
-	ctx.fillRect(0, 0, 1200, 800);
+	ctx.fillRect(0, 0, canvas.width, canvas.height);
 	setInterval(update, 20);
 }
 function update() {
 	ctx.fillStyle = "black";
 	ctx.strokeStyle = "black";
-	ctx.fillRect(0, 0, 1200, 800);
+	ctx.fillRect(0, 0, canvas.width, canvas.height);
 	ctx.fillStyle = "white";
 	ctx.strokeStyle = "white";
 	ctx.lineWidth = 10;
-	ctx.setLineDash([800/9, 800/9]);
+	ctx.setLineDash([canvas.height/9, canvas.height/9]);
 	ctx.beginPath()
 	ctx.moveTo(600, 0);
 	ctx.lineTo(600, 800);
@@ -103,7 +104,7 @@ function update() {
 	ctx.setLineDash([]);
 	ctx.lineWidth = 1;
 	//loss detection
-	if (ball.position.x - ball.radius >= 1200) {
+	if (ball.position.x - ball.radius >= canvas.width) {
 		ball = new Ball();
 		players.player1.score++;
 	}
@@ -114,20 +115,20 @@ function update() {
 	//move the ball
 	ball.position.x += ball.velocity.x*ball.speed;
 	ball.position.y += ball.velocity.y*ball.speed;
-	if (ball.position.y + ball.radius >= 800 || ball.position.y - ball.radius <= 0) {
+	if (ball.position.y + ball.radius >= canvas.height || ball.position.y - ball.radius <= 0) {
 		ball.velocity.y = -ball.velocity.y;
 	}// make it bounce
 	//move the players
 	if (buttons.up && players.player2.y > 0) {
 		players.player2.y -= players.speed;
 	}
-	if (buttons.down && players.player2.y + players.height< 800) {
+	if (buttons.down && players.player2.y + players.height < canvas.height) {
 		players.player2.y += players.speed;
 	}
 	if (buttons.a && players.player1.y > 0) {
 		players.player1.y -= players.speed;
 	}
-	if (buttons.z && players.player1.y + players.height < 800) {
+	if (buttons.z && players.player1.y + players.height < canvas.height) {
 		players.player1.y += players.speed;
 	}
 	//Collision Detection!
@@ -142,9 +143,9 @@ function update() {
 	ctx.fillRect(players.player2.x, players.player2.y, players.width, players.height);
 	fillCircle(ball.position.x, ball.position.y, ball.radius);
 	ctx.textAlign = "right";
-	ctx.fillText(players.player1.score, 580, 10);
+	ctx.fillText(players.player1.score, canvas.width/2-20, 10);
 	ctx.textAlign = "left";
-	ctx.fillText(players.player2.score, 620, 10);
+	ctx.fillText(players.player2.score, canvas.width/2+20, 10);
 }
 
 window.onload = start;
