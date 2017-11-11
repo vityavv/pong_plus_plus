@@ -94,16 +94,16 @@ function update() {
 		ball.velocity.y = -ball.velocity.y;
 	}// make it bounce
 	//move the players
-	if (buttons.up) {
+	if (buttons.up && players.player2.y > 0) {
 		players.player2.y -= players.speed;
 	}
-	if (buttons.down) {
+	if (buttons.down && players.player2.y < 800) {
 		players.player2.y += players.speed;
 	}
-	if (buttons.a) {
+	if (buttons.a && players.player1.y > 0) {
 		players.player1.y -= players.speed;
 	}
-	if (buttons.z) {
+	if (buttons.z && players.player1.y < 800) {
 		players.player1.y += players.speed;
 	}
 	//Collision Detection!
