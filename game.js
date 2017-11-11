@@ -64,6 +64,16 @@ function Ball() {
 	this.radius = 20;
 }
 var ball;
+var player1 = {
+	x: 100 - 30,
+	y: 800/2 - 150/2,
+	score: 0
+}
+var player2 = {
+	x: 1200-100,
+	y: 800/2 - 150/2,
+	score: 0
+}
 var players = {
 	width: 30,
 	height: 150,
@@ -106,11 +116,11 @@ function update() {
 	//loss detection
 	if (ball.position.x - ball.radius >= canvas.width) {
 		ball = new Ball();
-		players.player1.score++;
+		player1.score++;
 	}
 	if (ball.position.x + ball.radius <= 0) {
 		ball = new Ball();
-		players.player2.score++;
+		player2.score++;
 	}
 	//move the ball
 	ball.position.x += ball.velocity.x*ball.speed;
@@ -119,33 +129,33 @@ function update() {
 		ball.velocity.y = -ball.velocity.y;
 	}// make it bounce
 	//move the players
-	if (buttons.up && players.player2.y > 0) {
-		players.player2.y -= players.speed;
+	if (buttons.up && player2.y > 0) {
+		player2.y -= players.speed;
 	}
-	if (buttons.down && players.player2.y + players.height < canvas.height) {
-		players.player2.y += players.speed;
+	if (buttons.down && player2.y + players.height < canvas.height) {
+		player2.y += players.speed;
 	}
-	if (buttons.a && players.player1.y > 0) {
-		players.player1.y -= players.speed;
+	if (buttons.a && player1.y > 0) {
+		player1.y -= players.speed;
 	}
-	if (buttons.z && players.player1.y + players.height < canvas.height) {
-		players.player1.y += players.speed;
+	if (buttons.z && player1.y + players.height < canvas.height) {
+		player1.y += players.speed;
 	}
 	//Collision Detection!
-	if (ball.position.x - ball.radius >= 98 && ball.position.x - ball.radius <= 102 && ball.position.y >= players.player1.y && ball.position.y <= players.player1.y + players.height) {
+	if (ball.position.x - ball.radius >= 98 && ball.position.x - ball.radius <= 102 && ball.position.y >= player1.y && ball.position.y <= player1.y + players.height) {
 		ball.velocity.x = -ball.velocity.x;
 	}
-	if (ball.position.x + ball.radius >= 1098 && ball.position.x + ball.radius <= 1102 && ball.position.y >= players.player2.y && ball.position.y <= players.player2.y + players.height) {
+	if (ball.position.x + ball.radius >= 1098 && ball.position.x + ball.radius <= 1102 && ball.position.y >= player2.y && ball.position.y <= player2.y + players.height) {
 		ball.velocity.x = -ball.velocity.x;
 	}
 	//Draw everything
-	ctx.fillRect(players.player1.x, players.player1.y, players.width, players.height);
-	ctx.fillRect(players.player2.x, players.player2.y, players.width, players.height);
+	ctx.fillRect(player1.x, player1.y, players.width, players.height);
+	ctx.fillRect(player2.x, player2.y, players.width, players.height);
 	fillCircle(ball.position.x, ball.position.y, ball.radius);
 	ctx.textAlign = "right";
-	ctx.fillText(players.player1.score, canvas.width/2-20, 10);
+	ctx.fillText(player1.score, canvas.width/2-20, 10);
 	ctx.textAlign = "left";
-	ctx.fillText(players.player2.score, canvas.width/2+20, 10);
+	ctx.fillText(player2.score, canvas.width/2+20, 10);
 }
 
 window.onload = start;
