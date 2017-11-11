@@ -70,11 +70,13 @@ var players = {
 	speed: 5,
 	player1: {
 		x: 100 - 30,
-		y: 400 - 150/2 //150 height
+		y: 400 - 150/2, //150 height
+		score: 0
 	},
 	player2: {
 		x: 1100,
-		y: 400 - 150/2
+		y: 400 - 150/2,
+		score: 0
 	},
 };
 function start() {
@@ -88,6 +90,15 @@ function update() {
 	ctx.fillStyle = "black";
 	ctx.fillRect(0, 0, 1200, 800);
 	ctx.fillStyle = "white";
+	//loss detection
+	if (ball.position.x - ball.radius >= 1200) {
+		ball = new Ball();
+		players.player1.score++;
+	}
+	if (ball.position.x + ball.radius <= 0) {
+		ball = new Ball();
+		players.player2.score++;
+	}
 	//move the ball
 	ball.position.x += ball.velocity.x*ball.speed;
 	ball.position.y += ball.velocity.y*ball.speed;
@@ -108,10 +119,10 @@ function update() {
 		players.player1.y += players.speed;
 	}
 	//Collision Detection!
-	if (ball.position.x - ball.radius >= 100 && ball.position.x - ball.radius <= 102 && ball.position.y >= players.player1.y && ball.position.y <= players.player1.y + players.height) {
+	if (ball.position.x - ball.radius >= 98 && ball.position.x - ball.radius <= 102 && ball.position.y >= players.player1.y && ball.position.y <= players.player1.y + players.height) {
 		ball.velocity.x = -ball.velocity.x;
 	}
-	if (ball.position.x + ball.radius >= 1098 && ball.position.x + ball.radius <= 1100 && ball.position.y >= players.player2.y && ball.position.y <= players.player2.y + players.height) {
+	if (ball.position.x + ball.radius >= 1098 && ball.position.x + ball.radius <= 1102 && ball.position.y >= players.player2.y && ball.position.y <= players.player2.y + players.height) {
 		ball.velocity.x = -ball.velocity.x;
 	}
 	//Draw everything

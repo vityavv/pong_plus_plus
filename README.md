@@ -13,4 +13,4 @@ I am a 13-year-old (at the time of writing) who likes web dev (frontend (so far.
 ---
 ## Credits
 ### Font
-The font used for the numbers is [Arcade Classic](http://www.1001fonts.com/arcadeclassic-font.html#more). (I haven't added the score yet, so you don't see them.
+The font used for the numbers is [Arcade Classic](http://www.1001fonts.com/arcadeclassic-font.html#more). (I haven't added the score yet, so you don't see them.)
