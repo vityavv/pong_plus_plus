@@ -64,7 +64,16 @@ function Ball() {
 	this.radius = 20;
 }
 var ball;
-var player1 = {
+function Player(playernum) {
+	if (playernum == 1) {
+		this.x = 100 - players.width;
+	} else if (playernum == 2) {
+		this.x = canvas.width - 100;
+	}
+	this.y = canvas.height/2 - players.height/2;
+	this.score = 0;
+}
+/*var player1 = {
 	x: 100 - 30,
 	y: 800/2 - 150/2,
 	score: 0
@@ -73,7 +82,7 @@ var player2 = {
 	x: 1200-100,
 	y: 800/2 - 150/2,
 	score: 0
-}
+}*/
 var players = {
 	width: 30,
 	height: 150,
@@ -83,6 +92,8 @@ function start() {
 	canvas = $("pongcanvas");
 	ctx = canvas.getContext("2d");
 	ball = new Ball();
+	player1 = new Player(1);
+	player2 = new Player(2);
 	ctx.textBaseline = "top";
 	ctx.font = "100px ArcadeClassic";
 
