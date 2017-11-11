@@ -88,8 +88,18 @@ function start() {
 }
 function update() {
 	ctx.fillStyle = "black";
+	ctx.strokeStyle = "black";
 	ctx.fillRect(0, 0, 1200, 800);
 	ctx.fillStyle = "white";
+	ctx.strokeStyle = "white";
+	ctx.lineWidth = 10;
+	ctx.setLineDash([800/9, 800/9]);
+	ctx.beginPath()
+	ctx.moveTo(600, 0);
+	ctx.lineTo(600, 800);
+	ctx.stroke();
+	ctx.setLineDash([]);
+	ctx.lineWidth = 1;
 	//loss detection
 	if (ball.position.x - ball.radius >= 1200) {
 		ball = new Ball();
