@@ -109,8 +109,8 @@ function update() {
 	ctx.lineWidth = 10;
 	ctx.setLineDash([canvas.height/9, canvas.height/9]);
 	ctx.beginPath()
-	ctx.moveTo(600, 0);
-	ctx.lineTo(600, 800);
+	ctx.moveTo(canvas.width/2, 0);
+	ctx.lineTo(canvas.width/2, canvas.height);
 	ctx.stroke();
 	ctx.setLineDash([]);
 	ctx.lineWidth = 1;
@@ -143,10 +143,10 @@ function update() {
 		player1.y += players.speed;
 	}
 	//Collision Detection!
-	if (ball.position.x - ball.radius >= 98 && ball.position.x - ball.radius <= 102 && ball.position.y >= player1.y && ball.position.y <= player1.y + players.height) {
+	if (ball.position.x - ball.radius >= 99 && ball.position.x - ball.radius <= 101 && ball.position.y >= player1.y && ball.position.y <= player1.y + players.height) {
 		ball.velocity.x = -ball.velocity.x;
 	}
-	if (ball.position.x + ball.radius >= 1098 && ball.position.x + ball.radius <= 1102 && ball.position.y >= player2.y && ball.position.y <= player2.y + players.height) {
+	if (ball.position.x + ball.radius >= canvas.width - 101 && ball.position.x + ball.radius <= canvas.width - 99 && ball.position.y >= player2.y && ball.position.y <= player2.y + players.height) {
 		ball.velocity.x = -ball.velocity.x;
 	}
 	//Draw everything
