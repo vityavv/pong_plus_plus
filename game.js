@@ -82,6 +82,8 @@ var players = {
 function start() {
 	canvas = $("pongcanvas");
 	ctx = canvas.getContext("2d");
+	ctx.textBaseline = "top";
+	ctx.font = "100px ArcadeClassic";
 
 	ctx.fillRect(0, 0, 1200, 800);
 	setInterval(update, 20);
@@ -139,6 +141,10 @@ function update() {
 	ctx.fillRect(players.player1.x, players.player1.y, players.width, players.height);
 	ctx.fillRect(players.player2.x, players.player2.y, players.width, players.height);
 	fillCircle(ball.position.x, ball.position.y, ball.radius);
+	ctx.textAlign = "right";
+	ctx.fillText(players.player1.score, 580, 10);
+	ctx.textAlign = "left";
+	ctx.fillText(players.player2.score, 620, 10);
 }
 
 window.onload = start;

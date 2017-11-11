@@ -1,3 +1,7 @@
+@font-face {
+	font-family: "ArcadeClassic";
+	src: url("font.ttf");
+}
 #pongcanvas {
 	width: 1200px;
 	height: 800px;
