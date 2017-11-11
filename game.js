@@ -78,6 +78,8 @@ function start() {
 	canvas = $("pongcanvas");
 	ctx = canvas.getContext("2d");
 
+	if (ball.velocity.x > 0) {ball.velocity.x++;} else {ball.velocity.x--;}
+	if (ball.velocity.y > 0) {ball.velocity.y++;} else {ball.velocity.y--;}
 	ctx.fillRect(0, 0, 1200, 800);
 	setInterval(update, 20);
 }
