@@ -78,16 +78,6 @@ var players = {
 	width: 30,
 	height: 150,
 	speed: 5,
-	player1: {
-		x: 100 - 30,
-		y: 800/2 - 150/2, //150 height
-		score: 0
-	},
-	player2: {
-		x: 1200-100,
-		y: 800/2 - 150/2,
-		score: 0
-	},
 };
 function start() {
 	canvas = $("pongcanvas");
