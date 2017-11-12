@@ -5,5 +5,8 @@
 #pongcanvas {
 	width: 1400px;
 	height: 800px;
-	border: 3px solid blue;
-}
+	border: 3px solid white;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin: -400px 0 0 -700px;
