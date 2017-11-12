@@ -52,10 +52,16 @@ var canvas, ctx;//These are the variables that depend on DOM, so we initialize t
 function Ball() {
 	this.velocity = {
 		x: parseFloat((Math.random()*2 - 1).toFixed(2)), //Why does .toFixed() return a string? WHYYY?
-		y: parseFloat((Math.random()*2 - 1).toFixed(2))
 	};
-	if (this.velocity.x > 0) {this.velocity.x++;} else {this.velocity.x--;}
-	if (this.velocity.y > 0) {this.velocity.y++;} else {this.velocity.y--;}
+	if (this.velocity.x > 0) {
+		this.velocity.y = 1 - this.velocity.x;
+		this.velocity.x++;
+		this.velocity.y++;
+	} else {
+		this.velocity.y = -1 - this.velocity.x;
+		this.velocity.x--;
+		this.velocity.y--;
+	}
 	this.position = {
 		x: canvas.width/2,
 		y: canvas.height/2
