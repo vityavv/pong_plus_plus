@@ -7,10 +7,6 @@ var ev = {//environment-variables
 		width: 30,
 		height: 150,
 		speed: 5,
-	},
-	canvas: {
-		width: 1400,
-		height: 800
 	}
 }
 
