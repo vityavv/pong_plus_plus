@@ -2,8 +2,24 @@
 	font-family: "ArcadeClassic";
 	src: url("font.ttf");
 }
+body {
+	background: black;
+}
+h1 {
+	font-family: "ArcadeClassic";
+	text-align: center;
+	color: white;
+	font-size: 100px;
+	line-height: 100px;
+	margin: 0;
+	padding: 0;
+}
 #pongcanvas {
 	width: 1400px;
 	height: 800px;
-	border: 3px solid blue;
+	border: 3px solid white;
+	position: absolute;
+	left: 50%;
+	top: 120px;
+	margin: 0 0 0 -700px;
 }
