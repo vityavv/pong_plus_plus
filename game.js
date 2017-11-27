@@ -1,3 +1,19 @@
+var ev = {//environment-variables
+	ball: {
+		speed: 3,
+		radius: 20
+	},
+	players: {
+		width: 30,
+		height: 150,
+		speed: 5,
+	},
+	canvas: {
+		width: 1400,
+		height: 800
+	}
+}
+
 function $(element) {
 	return document.getElementById(element);
 } //Looks a lot like jQuery, but _it's not_. Loads an element for you
@@ -89,11 +105,6 @@ var player2 = {
 	y: 800/2 - 150/2,
 	score: 0
 }*/
-var players = {
-	width: 30,
-	height: 150,
-	speed: 5,
-};
 function start() {
 	canvas = $("pongcanvas");
 	ctx = canvas.getContext("2d");
