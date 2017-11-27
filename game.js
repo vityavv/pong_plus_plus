@@ -69,6 +69,7 @@ function Ball() {
 	this.speed = 3;
 	this.radius = 20;
 }
+var ballbounced = false;//ENSURES IT BOUNCES
 var ball;
 function Player(playernum) {
 	if (playernum == 1) {
@@ -149,11 +150,17 @@ function update() {
 		player1.y += players.speed;
 	}
 	//Collision Detection!
-	if (ball.position.x - ball.radius >= 99 && ball.position.x - ball.radius <= 101 && ball.position.y >= player1.y && ball.position.y <= player1.y + players.height) {
+	var ballcolideswithplayer1 = ball.position.x - ball.radius >= 99 && ball.position.x - ball.radius <= 101 && ball.position.y >= player1.y && ball.position.y <= player1.y + players.height;
+	var ballcolideswithplayer2 = ball.position.x + ball.radius >= canvas.width - 101 && ball.position.x + ball.radius <= canvas.width - 99 && ball.position.y >= player2.y && ball.position.y <= player2.y + players.height;
+	if (ballcolideswithplayer1 && !ballbounced) {
 		ball.velocity.x = -ball.velocity.x;
+		ballbounced = true
+	} else if (ballcolideswithplayer2 && !ballbounced) {
+		ball.velocity.x = -ball.velocity.x;
+		ballbounced = true;
 	}
-	if (ball.position.x + ball.radius >= canvas.width - 101 && ball.position.x + ball.radius <= canvas.width - 99 && ball.position.y >= player2.y && ball.position.y <= player2.y + players.height) {
-		ball.velocity.x = -ball.velocity.x;
+	if (!(ballcolideswithplayer1 || ballcolideswithplayer2)) {
+		ballbounced = false;
 	}
 	//Draw everything
 	ctx.fillRect(player1.x, player1.y, players.width, players.height);
