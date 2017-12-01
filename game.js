@@ -95,10 +95,28 @@ function Player(playernum) {
 	this.score = 0;
 }
 var interval;
+var ranges = {};//These depend on DOM again
+function changeBallSpeed() {
+	ev.ball.speed = parseInt(ranges.ballspeed.value);
+	var positiontemp = Object.assign({}, ball.position);
+	ball = new Ball();
+	ball.position = Object.assign({}, positiontemp);
+}
 function start() {
 	canvas = $("pongcanvas");
 	ctx = canvas.getContext("2d");
 	customization = $("customization");
+
+	ranges.ballspeed = $("ballspeed");
+	ranges.ballspeed.addEventListener("change", changeBallSpeed);
+	ranges.ballsize = $("ballsize");
+	ranges.playerwidth = $("playerwidth");
+	ranges.playerheight = $("playerheight");
+	ranges.playerspeed = $("playerspeed");
+	ranges.playeroffset = $("playeroffset");
+	ranges.canvasheight = $("canvasheight");
+	ranges.canvaswidth = $("canvaswidth");
+
 	ball = new Ball();
 	player1 = new Player(1);
 	player2 = new Player(2);
