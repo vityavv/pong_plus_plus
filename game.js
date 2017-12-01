@@ -102,6 +102,24 @@ function changeBallSpeed() {
 	ball = new Ball();
 	ball.position = Object.assign({}, positiontemp);
 }
+function changeBallSize() {
+	ev.ball.radius = parseInt(ranges.ballsize.value);
+	var positiontemp = Object.assign({}, ball.position);
+	ball = new Ball();
+	ball.position = Object.assign({}, positiontemp);
+}
+function changePlayerWidth() {
+	ev.players.width = parseInt(ranges.playerwidth.value);
+	var player1y = player1.y;
+	var player2y = player2.y;
+	player1 = new Player(1);
+	player2 = new Player(2);
+	player1.y = player1y;
+	player2.y = player2y;
+}
+function changePlayerHeight() {
+	ev.players.height = parseInt(ranges.playerheight.value);
+}
 function start() {
 	canvas = $("pongcanvas");
 	ctx = canvas.getContext("2d");
@@ -110,8 +128,11 @@ function start() {
 	ranges.ballspeed = $("ballspeed");
 	ranges.ballspeed.addEventListener("change", changeBallSpeed);
 	ranges.ballsize = $("ballsize");
+	ranges.ballsize.addEventListener("change", changeBallSize);
 	ranges.playerwidth = $("playerwidth");
+	ranges.playerwidth.addEventListener("change", changePlayerWidth);
 	ranges.playerheight = $("playerheight");
+	ranges.playerwidth.addEventListener("change", changePlayerHeight);
 	ranges.playerspeed = $("playerspeed");
 	ranges.playeroffset = $("playeroffset");
 	ranges.canvasheight = $("canvasheight");
