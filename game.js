@@ -94,6 +94,7 @@ function Player(playernum) {
 	this.y = canvas.height/2 - ev.players.height/2;
 	this.score = 0;
 }
+var interval;
 function start() {
 	canvas = $("pongcanvas");
 	ctx = canvas.getContext("2d");
@@ -110,13 +111,15 @@ function start() {
 		if (x >= canvas.width - 50 && x <= canvas.width && y >= 0 && y <= 50) {
 			if (customization.style.display == "none" || customization.style.display == "") {
 				customization.style.display = "block";
+				clearInterval(interval);
 			} else {
 				customization.style.display = "none";
+				interval = setInterval(update, 20);
 			}
 		}
 	});
 	ctx.fillRect(0, 0, canvas.width, canvas.height);
-	setInterval(update, 20);
+	interval = setInterval(update, 20);
 }
 function update() {
 	ctx.fillStyle = "black";
