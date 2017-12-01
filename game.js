@@ -62,7 +62,7 @@ window.addEventListener("keyup", function(e){
 			break;
 	}
 });
-var canvas, ctx;//These are the variables that depend on DOM, so we initialize them after load.
+var canvas, ctx, customization;//These are the variables that depend on DOM, so we initialize them after load.
 function Ball() {
 	this.velocity = {
 		x: parseFloat((Math.random()*2 - 1).toFixed(2)), //Why does .toFixed() return a string? WHYYY?
@@ -97,12 +97,24 @@ function Player(playernum) {
 function start() {
 	canvas = $("pongcanvas");
 	ctx = canvas.getContext("2d");
+	customization = $("customization");
 	ball = new Ball();
 	player1 = new Player(1);
 	player2 = new Player(2);
 	ctx.textBaseline = "top";
 	ctx.font = "100px ArcadeClassic";
 
+	canvas.addEventListener("mouseup", function(e){
+		var x = e.x - canvas.offsetLeft;
+		var y = e.y - canvas.offsetTop;
+		if (x >= canvas.width - 50 && x <= canvas.width && y >= 0 && y <= 50) {
+			if (customization.style.display == "none" || customization.style.display == "") {
+				customization.style.display = "block";
+			} else {
+				customization.style.display = "none";
+			}
+		}
+	});
 	ctx.fillRect(0, 0, canvas.width, canvas.height);
 	setInterval(update, 20);
 }
