@@ -129,8 +129,8 @@ function update() {
 		player2.score++;
 	}
 	//Collision Detection!
-	var ballcolideswithplayer1 = ball.position.x - ball.radius >= ev.players.offset-1 && ball.position.x - ball.radius <= ev.players.offset+1 && ball.position.y >= player1.y && ball.position.y <= player1.y + ev.players.height;
-	var ballcolideswithplayer2 = ball.position.x + ball.radius >= canvas.width - ev.players.offset+1 && ball.position.x + ball.radius <= canvas.width - ev.players.offset-1 && ball.position.y >= player2.y && ball.position.y <= player2.y + ev.players.height;
+	var ballcolideswithplayer1 = ball.position.x - ball.radius >= ev.players.offset-2 && ball.position.x - ball.radius <= ev.players.offset+2 && ball.position.y >= player1.y && ball.position.y <= player1.y + ev.players.height;
+	var ballcolideswithplayer2 = ball.position.x + ball.radius >= canvas.width - ev.players.offset-2 && ball.position.x + ball.radius <= canvas.width - ev.players.offset+2 && ball.position.y >= player2.y && ball.position.y <= player2.y + ev.players.height;
 	if (ballcolideswithplayer1 && !ballbounced) {
 		ball.velocity.x = -ball.velocity.x;
 		ballbounced = true;
