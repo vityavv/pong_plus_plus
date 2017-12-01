@@ -23,3 +23,14 @@ h1 {
 	top: 120px;
 	margin: 0 0 0 -700px;
 }
+#customization {
+	color: white;
+	position: absolute;
+	height: 50%;
+	width: 20%;
+	top: 25%;
+	left: 40%;
+	background-color: rgba(0, 0, 0, .5);
+	border: 1px dashed white;
+	padding: 20px;
+}
