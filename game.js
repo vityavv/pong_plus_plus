@@ -10,7 +10,8 @@ var ev = {//environment-variables
 		offset: 100
 	}
 }
-
+var settings_icon = new Image(256, 256);
+settings_icon.src = "settings_icon.png";
 function $(element) {
 	return document.getElementById(element);
 } //Looks a lot like jQuery, but _it's not_. Loads an element for you
@@ -168,6 +169,7 @@ function update() {
 	ctx.fillText(player1.score, canvas.width/2-20, 10);
 	ctx.textAlign = "left";
 	ctx.fillText(player2.score, canvas.width/2+20, 10);
+	ctx.drawImage(settings_icon, canvas.width-50, 0, 50, 50);
 }
 
 window.onload = start;
